@@ -1,6 +1,6 @@
 db = require "./models"
 
-db.Bot
+db.User
   .create(name: "John Doe")
-  .then (bot) ->
-    console.log bot.dataValues
+  .then (user) ->
+    user.getAvatars()

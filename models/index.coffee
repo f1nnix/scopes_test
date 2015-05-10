@@ -10,16 +10,19 @@ config    = require(__dirname + '/../../config/config.json')[env]
 sequelize = new Sequelize(config.database, config.username, config.password, config)
 db        = {}
 
-fs.readdirSync(__dirname).filter((file) ->
-  file.indexOf('.') != 0 and file != basename
-).forEach (file) ->
-  # prevent reading coffescript files, only *.js models
-  if path.extname(file) is ".js"
-    model = sequelize['import'](path.join(__dirname, file))
-    db[model.name] = model
+fs
+  .readdirSync(__dirname)
+  .filter (file)-> file.indexOf('.') != 0 and file != basename
+  .forEach (file) ->
+    # prevent reading coffescript files, only *.js models
+    if path.extname(file) is ".js"
+      model = sequelize['import'](path.join(__dirname, file))
+      db[model.name] = model
 
 for keyName of db
+  console.log "keyName: #{keyName}"
   model = db[keyName]
+  console.log "Model name: #{model.name}"
   # if it's a model
   if model.associate?
     model.associate db

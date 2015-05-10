@@ -1,10 +1,14 @@
 'use strict'
 
 module.exports = (sequelize, DataTypes) ->
-  Avatar = sequelize.define('Avatar', { url: DataTypes.STRING }, classMethods: associate: (models) ->
-    Avatar.belongsTo models.Bot,
+  Avatar = sequelize.define('Avatar', {
+    url: DataTypes.STRING
+  }, classMethods: associate: (models) ->
+
+    Avatar.belongsTo models.User,
       foreignKey: 'AvatarableId'
       as: 'Avatarable'
-    return
+      scope:
+        Avatarable: "User"
   )
   Avatar

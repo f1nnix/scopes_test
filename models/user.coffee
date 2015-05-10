@@ -6,6 +6,16 @@ module.exports = (sequelize, DataTypes) ->
   ,
     classMethods:
       associate: (models) ->
-        # associations can be defined here
+        User.hasMany models.Avatar,
+          # as: "Avatar"
+          foreignKey: "AvatarableId"
+          scope:
+            Avatarable: "User"
+    hooks:
+      afterCreate: (user, options, fn) ->
+        user.createAvatar
+          url: 'http://domain.com/avatar.png'
+        .then (avatar) ->
+          fn null, avatar
 
   User

@@ -29,7 +29,9 @@
   });
 
   for (keyName in db) {
+    console.log("keyName: " + keyName);
     model = db[keyName];
+    console.log("Model name: " + model.name);
     if (model.associate != null) {
       model.associate(db);
     }

@@ -3,10 +3,10 @@
 
   db = require("./models");
 
-  db.Bot.create({
+  db.User.create({
     name: "John Doe"
-  }).then(function(bot) {
-    return console.log(bot.dataValues);
+  }).then(function(user) {
+    return user.getAvatars();
   });
 
 }).call(this);

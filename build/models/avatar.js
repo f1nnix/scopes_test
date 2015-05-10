@@ -7,9 +7,12 @@
     }, {
       classMethods: {
         associate: function(models) {
-          Avatar.belongsTo(models.Bot, {
+          return Avatar.belongsTo(models.User, {
             foreignKey: 'AvatarableId',
-            as: 'Avatarable'
+            as: 'Avatarable',
+            scope: {
+              Avatarable: "User"
+            }
           });
         }
       }

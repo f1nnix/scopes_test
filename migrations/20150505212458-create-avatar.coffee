@@ -3,18 +3,21 @@ module.exports =
   up: (queryInterface, Sequelize) ->
     queryInterface.createTable 'Avatars',
       id:
-        allowNull: false
+        allowNull    : false
         autoIncrement: true
-        primaryKey: true
-        type: Sequelize.INTEGER
-      url: type: Sequelize.STRING
+        primaryKey   : true
+        type         : Sequelize.INTEGER
+      url:
+        type: Sequelize.STRING
       createdAt:
         allowNull: false
-        type: Sequelize.DATE
+        type     : Sequelize.DATE
       updatedAt:
         allowNull: false
-        type: Sequelize.DATE
-      Avatarable: type: Sequelize.STRING
-      AvatarableId: type: Sequelize.INTEGER
+        type     : Sequelize.DATE
+      Avatarable:
+        type: Sequelize.STRING
+      AvatarableId:
+        type: Sequelize.INTEGER
   down: (queryInterface, Sequelize) ->
     queryInterface.dropTable 'Avatars'
